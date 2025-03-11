@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState,useRef  } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const NewArrivals = () => {
+
+     const scrollRef=useRef(null);
+     const [isDragging,setIsDragging]=useState(false);
+     const[startX,setStartX]=useState(0);
+     const[scrollLeft,setScrollLeft]=useState(false);
+     const[canScrollRight,setCanScrollRight] =useState(true);
+
+
   const newArrivals = [
     {
       _id: "1",
@@ -92,7 +100,23 @@ const NewArrivals = () => {
           },
         ],
       },
-  ];
+  ];//update scroll btn
+  const updateScrollButtons=()=>{
+    const container=scrollRef.current;
+    console.log({
+        scrollLeft:container.scrollLeft,
+        clientWidth:container.clientWidth,
+        containerScrollWidth: container.scrollWidth,
+    })
+  }
+
+  useEffect(()=>{
+    const container=scrollRef.current;
+    if(container){
+        container.addEventListener("Scroll",updateScrollButtons);
+        updateScrollButtons();
+    }
+  })
 
   return (
     <section>
@@ -115,7 +139,7 @@ const NewArrivals = () => {
       </div>
 
       {/**scrollable content */}
-      <div className="container mx-auto overflow-x-scroll flex space-x-6 relative">
+      <div ref={scrollRef} className="container mx-auto overflow-x-scroll flex space-x-6 relative">
        {newArrivals.map((product)=>(
         <div key={product._id} className="min-w-[100%] sm:min-w-[50%] lg:min-w-[30%] relative">
             <img 
