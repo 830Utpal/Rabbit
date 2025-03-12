@@ -156,6 +156,17 @@ const FilterSidebar = () => {
         </div>
     ))}
 </div>
+ 
+
+ {/**price range filter */}
+ <div className='mb-8'>
+    <label className='block text-gray-600 font medium mb-2'>Price Range</label>
+    <input type="range" name="priceRange" min={0} max={100} className='w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer'/>
+    <div className='flex justify-between text-gray-600 mt-2'>
+        <span>$0</span>
+        <span>${priceRange[1]}</span>
+    </div>
+ </div>
 
  </div>
   )
