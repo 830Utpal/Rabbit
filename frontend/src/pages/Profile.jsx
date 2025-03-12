@@ -1,4 +1,5 @@
 import React from 'react'
+import MyOrdersPage from './MyordersPage'
 
 const Profile = () => {
   return (
@@ -14,6 +15,10 @@ const Profile = () => {
             <button className='w-full bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600'>
                 Logout
             </button>
+            </div>
+            {/**Right section:orders table */}
+            <div className='w-full md:w-2/3 lg:w-3/4'>
+             <MyOrdersPage/>
             </div>
         </div>
       </div>
