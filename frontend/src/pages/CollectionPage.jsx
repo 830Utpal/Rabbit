@@ -89,7 +89,7 @@ const CollectionPage = () => {
                 <FaFilter className="mr-2" />Filters
             </button>
             {/**filter sidebar */}
-            <div ref={sidebarRef} className={`${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
+            <div ref={sidebarRef} className={`${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} fixed inset-y-0 z-50 left-0 w-64 bg-white overflow-y-auto transition-transform duration-300 lg:static lg:translate-x-0`}>
                 <FilterSidebar />
             </div>
         </div>
