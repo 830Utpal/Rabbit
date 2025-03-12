@@ -3,7 +3,7 @@ import { HiMagnifyingGlass, HiMiniXMark } from 'react-icons/hi2';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [isOpen, setIsOpen] = useState(false); // ✅ Fixed: Boolean state
+  const [isOpen, setIsOpen] = useState(false); //  Fixed: Boolean state
 
   const handleSearchToggle = () => {
     setIsOpen(!isOpen);

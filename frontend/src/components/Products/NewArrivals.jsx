@@ -56,12 +56,6 @@ const NewArrivals = () => {
       setCanScrollLeft(leftScroll > 0);
       setCanScrollRight(rightScrollable);
     }
-    console.log({
-      scrollLeft:container.scrollLeft,
-      clientWidth:container.ckienWidth,
-      containerScrollWidth:container.scrollWidth,
-      offsetLeft: scrollRef.current.offsetLeft
-    })
   };
 
   useEffect(() => {
@@ -104,7 +98,7 @@ const NewArrivals = () => {
       <div ref={scrollRef} className={`container mx-auto overflow-x-scroll flex space-x-6 relative ${isDragging? "cursor-grabbing":"cursor-grab"}`}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
-        onMOuseUp={handleMouseUpOrLeave}
+        onMouseUp={handleMouseUpOrLeave}
         onMouseLeave={handleMouseUpOrLeave}
       >
         {newArrivals.map((product) => (
