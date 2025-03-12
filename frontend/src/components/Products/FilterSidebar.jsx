@@ -88,7 +88,18 @@ const FilterSidebar = () => {
             </div>
         ))}
     </div>
+
+    {/**gender filter */}
+    <div className='mb-6'>
+        <label className='block text-gray-600 font- medium mb-2'>Gender</label>
+        {genders.map((gender)=>(
+            <div key={gender} className='flex items-center mb-1'>
+                <input type="radio" name="gender" className='mr-2 h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300'/>
+                <span className="text-gray-700">{gender}</span>
+            </div>
+        ))}
     </div>
+ </div>
   )
 }
 
