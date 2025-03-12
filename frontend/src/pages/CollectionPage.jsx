@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaFilter } from "react-icons/fa";
 import FilterSidebar from '../components/Products/FilterSidebar';
+import SortOptions from '../components/Products/SortOptions';
+import ProductGrid from '../components/Products/ProductGrid';
 
 const CollectionPage = () => {
     const [products, setProducts] = useState([]);
@@ -91,6 +93,14 @@ const CollectionPage = () => {
             {/**filter sidebar */}
             <div ref={sidebarRef} className={`${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} fixed inset-y-0 z-50 left-0 w-64 bg-white overflow-y-auto transition-transform duration-300 lg:static lg:translate-x-0`}>
                 <FilterSidebar />
+            </div>
+            <div className='flex-grow p-4'>
+                <h2 className='text-2xl uppercase mb-4'>All Collections</h2>
+                {/**sort options */}
+                <SortOptions/>
+
+                {/**product grid */}
+                <ProductGrid products={products}/>
             </div>
         </div>
     );
