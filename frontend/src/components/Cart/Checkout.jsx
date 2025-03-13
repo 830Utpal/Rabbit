@@ -65,6 +65,16 @@ const Checkout = () => {
                         className='w-full p-2 border rounded' required/>
                     </div>
                 </div>
+                <div className="mb-4">
+                    <label className='block text-gray-700 '>Address</label>
+                    <input type="text" value={shippingAddress.address}
+                    onChange={(e)=>setShippingAddress({
+                        ...shippingAddress,address:e.target.value,
+                     })
+                    }
+                    className='w-full p-2 border rounded' required
+                 />
+                </div>
             </form>
         </div>
       
