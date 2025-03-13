@@ -53,13 +53,13 @@ const Checkout = () => {
                 </h3>
                 <div className='mb-4 grid grid-cols-2 gap-4'>
                     <div>
-                        <label className='blocl text-gray-700'>First Name</label>
+                        <label className='block text-gray-700'>First Name</label>
                         <input type="text" value={shippingAddress.firstName}
                         onChange={(e)=>setShippingAddress({...shippingAddress,firstName: e.target.value,})}
                         className='w-full p-2 border rounded' required/>
                     </div>
                     <div>
-                        <label className='blocl text-gray-700'>Last Name</label>
+                        <label className='block text-gray-700'>Last Name</label>
                         <input type="text" value={shippingAddress.lastName}
                         onChange={(e)=>setShippingAddress({...shippingAddress,lastName: e.target.value,})}
                         className='w-full p-2 border rounded' required/>
@@ -74,6 +74,20 @@ const Checkout = () => {
                     }
                     className='w-full p-2 border rounded' required
                  />
+                </div>
+                <div className="mb-4 grid grid-cols-2 gap-4">
+                <div>
+                        <label className='block text-gray-700'>City</label>
+                        <input type="text" value={shippingAddress.city}
+                        onChange={(e)=>setShippingAddress({...shippingAddress,city: e.target.value,})}
+                        className='w-full p-2 border rounded' required/>
+                    </div>
+                    <div>
+                        <label className='block text-gray-700'>Postal Code</label>
+                        <input type="text" value={shippingAddress.postalCode}
+                        onChange={(e)=>setShippingAddress({...shippingAddress,postalCode: e.target.value,})}
+                        className='w-full p-2 border rounded' required/>
+                    </div>
                 </div>
             </form>
         </div>
