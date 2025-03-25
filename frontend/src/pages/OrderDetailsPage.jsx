@@ -91,6 +91,21 @@ const OrderDetailsPage = () => {
               <p className="">Address: {`${orderDetails.shippingAddress.city},${orderDetails.shippingAddress.country}`}</p>
             </div>
           </div>
+          {/*product list*/}
+          <div className="overflow-x-auto">
+            <h4 className="text-lg font-semibold mb-4">Products</h4>
+            <table className="min-w-full text-gray-600 mb-4">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="py-2 px-4">Name</th>
+                  <th className="py-2 px-4">Unit Price</th>
+                  <th className="py-2 px-4">Quantity</th>
+                  <th className="py-2 px-4">Total</th>
+
+                </tr>
+              </thead>
+            </table>
+          </div>
         </div>
       )}
     </div>
