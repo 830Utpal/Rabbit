@@ -11,6 +11,7 @@ import ProductDetails from './components/Products/ProductDetails'
 import Checkout from './components/Cart/Checkout'
 import OrderConfirmationPage from './pages/OrderConfirmationPage'
 import OrderDetailsPage from './pages/OrderDetailsPage'
+import MyOrdersPage from './pages/MyordersPage'
 
 const App = () => {
   return (
@@ -26,7 +27,9 @@ const App = () => {
         <Route path="product/:id" element={<ProductDetails/>}/>
         <Route path="checkout" element={<Checkout/>}/>
         <Route path="order-confirmation" element={<OrderConfirmationPage/>}/>
+        <Route path="/my-orders" element={<MyOrdersPage/>}/>
         <Route path="order/:id" element={<OrderDetailsPage/>}/>
+        
       </Route>
         <Route>{/*admin layout*/}</Route>
       </Routes>

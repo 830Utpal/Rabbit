@@ -121,6 +121,8 @@ const OrderDetailsPage = () => {
               </tbody>
             </table>
           </div>
+          {/**back to orders page */}
+          <Link to="/my-orders" className="text-blue-500 hover:underline">Back to My Orders</Link>
         </div>
       )}
     </div>
