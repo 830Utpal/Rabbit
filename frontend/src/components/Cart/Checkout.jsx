@@ -39,7 +39,7 @@ const Checkout = () => {
 
  const handleCreateCheckout=(e)=>{
     e.preventDefault();
-    //setCheckoutId(123);
+    setCheckoutId(123);
  }
 
   const handlePaymentSuccess=(details)=>{
@@ -134,7 +134,8 @@ const Checkout = () => {
                 </div>
             </form>
         </div>
-      
+      {/**right section */}
+      <div className='bg-gray-50 p-6 rounded-lg'>y</div>
     </div>
   )
 }
