@@ -156,6 +156,14 @@ const Checkout = () => {
             <p className="">Subtotal</p>
             <p className="">${cart.totalPrice?.toLocaleString()}</p>
         </div>
+        <div className="flex justify-between items-center text-lg">
+            <p className="">Shipping</p>
+            <p className="">free</p>
+        </div>
+        <div className="flex justify-between items-center text-lg mt-4 border-t pt-4">
+            <p className="">Total</p>
+            <p className="">${cart.totalPrice?.toLocaleString()}</p>
+        </div>
       </div>
     </div>
   )
