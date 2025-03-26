@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'; 
 
 const AdminHomePage = () => {
     const orders=[
@@ -18,6 +19,18 @@ const AdminHomePage = () => {
         <div className="p-4 shadow-md rounded-lg">
             <h2 className="text-xl font-semibold">Revenue</h2>
             <p className="text-2xl">$10000</p>
+        </div>
+        <div className="p-4 shadow-md rounded-lg">
+            <h2 className="text-xl font-semibold">Total Orders</h2>
+            <p className="text-2xl">200</p>
+            <Link to="/admin/orders" className="text-blue-500 hover:underline">Manage Orders
+            </Link>
+        </div>
+        <div className="p-4 shadow-md rounded-lg">
+            <h2 className="text-xl font-semibold">Total Products</h2>
+            <p className="text-2xl">100</p>
+            <Link to="/admin/products" className="text-blue-500 hover:underline">Manage Products
+            </Link>
         </div>
       </div>
     </div>
