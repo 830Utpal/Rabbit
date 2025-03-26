@@ -23,13 +23,25 @@ const UserManagement = () => {
             [e.target.name]:e.target.value,
         });
     }
+
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        console.log(formData)
+        //reset the form after submission
+        setFormData({
+            name:"",
+            email:"",
+            password:"",
+            role:"customer"
+        })
+    }
   return (
     <div className='max-w-7xl mx-auto p-6'>
      <h2 className="text-2xl font-bold mb-6">User Management</h2>
      {/**Add New User form */}
      <div className="p-6 rounded-lg mb-6">
         <h3 className="text-lg font-bold mb-4">Add New User</h3>
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="mb-4">
                 <label className='block text-gray-700'>Name</label>
                 <input type="text" name="name" value={formData.name} onChange={handleChange}
@@ -52,6 +64,7 @@ const UserManagement = () => {
                     <option value="admin">Admin</option>
                 </select>
             </div>
+            <button type="submit" className='bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600'>Add User</button>
         </form>
      </div>
     </div>

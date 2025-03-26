@@ -11,8 +11,15 @@ const AdminSidebar = () => {
     }
   return (
     <div className='p-6'>
-     <div className="mb-6">
-        <Link to="/admin" className='text-2xl font-medium'>Rabbit</Link>
+     <div className="mb-6 flex items-center space-x-2">
+                <img 
+                    src="/favicon.ico" 
+                    alt="Rabbit Logo" 
+                    className="w-6 h-6 md:w-8 md:h-8"
+                />
+                <Link to="/admin" className="text-2xl font-medium">
+                    Rabbit
+                </Link>
      </div>
      <h2 className="text-xl font-medium mb-6 text-center">Admin Dashboard</h2>
      <nav className='flex flex-col space-y-2'>
