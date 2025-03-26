@@ -33,7 +33,7 @@ const handleStatusChange=(orderId,status)=>{
             </thead>
             <tbody>
                 {orders.length >0 ? (
-orders.map((order)=><tr key={order._id} className='border-b hover:bg-gray-50 cursor-pointer'>
+orders.map((order)=>(<tr key={order._id} className='border-b hover:bg-gray-50 cursor-pointer'>
     <td className='py-3 px-4 font-medium text-gray-900 whitespace-nowrap'>
         #{order._id}
     </td>
@@ -49,9 +49,15 @@ orders.map((order)=><tr key={order._id} className='border-b hover:bg-gray-50 cur
     </td>
     <td className="p-4">
         <button onClick={()=>handleStatusChange(order._id,"Delivered")} className='bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600'>Mark as Delivered</button>
-    </td>
-</tr>)
-                ):(<tr></tr>)}
+       </td>
+     </tr>   
+      ))
+                
+            ):(
+                <tr>
+                   <td colSpan={5} className='p-4 text-center text-gray-500'>No orders Found.</td>
+                </tr>
+                )}
             </tbody>
         </table>
       </div>
