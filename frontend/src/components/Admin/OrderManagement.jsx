@@ -47,7 +47,9 @@ orders.map((order)=><tr key={order._id} className='border-b hover:bg-gray-50 cur
             <option value="Cancelled">Cancelled</option>
         </select>
     </td>
-    <td className="p-4"></td>
+    <td className="p-4">
+        <button onClick={()=>handleStatusChange(order._id,"Delivered")} className='bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600'>Mark as Delivered</button>
+    </td>
 </tr>)
                 ):(<tr></tr>)}
             </tbody>
