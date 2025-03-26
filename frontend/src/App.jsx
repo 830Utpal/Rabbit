@@ -13,6 +13,7 @@ import OrderConfirmationPage from './pages/OrderConfirmationPage'
 import OrderDetailsPage from './pages/OrderDetailsPage'
 import MyOrdersPage from './pages/MyordersPage'
 import AdminLayout from './components/Admin/AdminLayout'
+import AdminHomePage from './pages/AdminHomePage'
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
         
       </Route>
         <Route path="/admin" element={<AdminLayout/>}>{/*admin layout*/}
+         <Route index element={<AdminHomePage/>}/>
         
         </Route>
       </Routes>
