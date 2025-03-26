@@ -35,15 +35,20 @@ const EditProductPage = () => {
     console.log(file);
   }
 
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    console.log(productData);
+}
+
   return (
     <div className='max-w-5xl mx-auto p-6 shadow-md rounded-md'>
       <h2 className="text-3xl font-bold mb-6">Edit Product</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         {/**name */}
         <div className="mb-6">
           <label className='block font-semibold mb-2'>Product Name</label>
           <input type="text" name="name" value={productData.name} onChange={handleChange}
-            className='w-full border-gray-300 rounded-md p-2' required />
+            className='w-full border border-gray-300 rounded-md p-2' required />
         </div>
 
         {/**description */}
@@ -96,10 +101,11 @@ const EditProductPage = () => {
           <input type="file" onChange={handleImageUpload} />
           <div className='flex gap-4 mt-4'>
             {productData.images.map((image,index)=>(
-              <img src={image.url} alt={image.altText || "Product Image"} className='w-2- h-20 object-cover rounded-md shadow-md'/>
+              <img  key={index} src={image.url} alt={image.altText || "Product Image"} className='w-2- h-20 object-cover rounded-md shadow-md'/>
             ))}
           </div>
         </div>
+        <button type="submit" className='w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition-colors'>Update Product</button>
       </form>
     </div>
   )
