@@ -41,7 +41,7 @@ router.post('/', protect, async (req, res) => {
 // @desc Update checkout payment status
 // @access Private
 
-router,put('/:id/pay', protect, async (req, res) => {
+router.put('/:id/pay', protect, async (req, res) => {
     const {paymentStatus,paymentDetails} = req.body;
 
     try {
@@ -65,3 +65,51 @@ router,put('/:id/pay', protect, async (req, res) => {
         res.status(500).json({message: "Server error"});
     }
 });
+
+// @route POST /api/checkout/:id/finalise
+// @desc Finalise checkout and create order
+// @access Private
+
+router.post('/:id/finalise', protect, async (req, res) => {
+    try {
+        const checkout = await Checkout.findById(req.params.id);
+        if (!checkout) {
+            return res.status(404).json({message: "Checkout not found"});
+        }
+
+        if(checkout.isPaid && !checkout.isFinalised) {
+
+        // Create a new order
+        const finalOrder = await Order.create({
+            user: req.user._id,
+            orderItems: checkout.checkoutItems,
+            shippingAddress: checkout.shippingAddress,
+            paymentMethod: checkout.paymentMethod,
+            totalPrice: checkout.totalPrice,
+            isPaid: checkout.isPaid,
+            paidAt: checkout.paidAt,
+            isDelivered: false,
+            paymentStatus: "Paid",
+            paymentDetails: checkout.paymentDetails,
+        });
+
+        // Mark checkout as finalised
+        checkout.isFinalised = true;
+        checkout.finalisedAt = Date.now();
+        await checkout.save();
+
+        //delete the user's cart
+        await Cart.findOneAndDelete({ user: checkout.user });
+        res.status(201).json(finalOrder);
+    } else if(checkout.isFinalised) {
+            return res.status(400).json({message: "Checkout already finalised"});
+        }else {
+            return res.status(400).json({message: "Checkout not paid"});
+        }
+    } catch (error) {
+        console.error("Error finalising checkout:", error);
+        res.status(500).json({message: "Server error"});
+    }
+});
+
+module.exports = router;
