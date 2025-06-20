@@ -11,6 +11,7 @@ const uploadRoutes=require("./routes/uploadRoutes");
 const subscriberRoutes=require("./routes/subscriberRoute");
 const adminRoutes=require("./routes/adminRoutes");
 const productAdminRoutes=require("./routes/productAdminRoutes");
+const orderAdminRoutes=require("./routes/adminOrderRoutes");
 
 const app=express();
 app.use(express.json());
@@ -42,6 +43,7 @@ app.use("/api",subscriberRoutes);
 //Admin Routes
 app.use("/api/admin/users",adminRoutes);
 app.use("/api/admin/products",productAdminRoutes);
+app.use("/api/admin/orders",orderAdminRoutes);
 
 app.listen(PORT,()=>{
     console.log(`server is running on http://localhost:${PORT}`);
