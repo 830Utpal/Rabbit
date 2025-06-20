@@ -1,5 +1,4 @@
 const mongoose=require("mongoose");
-const { TbNumber0Small } = require("react-icons/tb");
 
 const productSchema=new mongoose.Schema({
     name:{
