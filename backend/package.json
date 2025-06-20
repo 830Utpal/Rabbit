@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-   "start":"node backend/server.js",
-   "dev":"nodemon backend/server.js",
-   "seed":"node seeder.js"
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "seed": "node seeder.js"
   },
   "keywords": [],
   "author": "",
@@ -13,11 +13,14 @@
   "description": "",
   "dependencies": {
     "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.7.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.0",
-    "nodemon": "^3.1.9"
+    "multer": "^2.0.1",
+    "nodemon": "^3.1.9",
+    "streamifier": "^0.1.1"
   }
 }
