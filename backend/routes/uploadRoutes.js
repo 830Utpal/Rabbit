@@ -3,6 +3,8 @@ const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier');
 
+const router = express.Router();
+
 require('dotenv').config();
 
 // Configure Cloudinary
@@ -43,3 +45,6 @@ router.post("/", upload.single("file"), (req, res) => {
         return res.status(500).json({ message: "Server error" });
     }
 });
+
+// Export the router
+module.exports = router;
