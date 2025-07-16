@@ -115,7 +115,7 @@ const cartSlice = createSlice({
         state.loading = false;
         state.error = action.error.message||"failed to fetch cart";
       })
-      .addToCart(addToCart.pending,(state)=>{
+      .addCase(addToCart.pending,(state)=>{
         state.loading=true;
         state.error=null;
       })

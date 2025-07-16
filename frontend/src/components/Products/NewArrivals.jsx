@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const NewArrivals = () => {
   const scrollRef = useRef(null);
@@ -10,17 +11,20 @@ const NewArrivals = () => {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
 
-  const newArrivals = [
-    { _id: "1", name: "Stylish Jacket", price: 120, images: [{ url: "https://picsum.photos/500/500?random=1", altText: "Stylish Jacket" }] },
-    { _id: "2", name: "Stylish Jacket", price: 120, images: [{ url: "https://picsum.photos/500/500?random=2", altText: "Stylish Jacket" }] },
-    { _id: "3", name: "Stylish Jacket", price: 120, images: [{ url: "https://picsum.photos/500/500?random=3", altText: "Stylish Jacket" }] },
-    { _id: "4", name: "Stylish Jacket", price: 120, images: [{ url: "https://picsum.photos/500/500?random=4", altText: "Stylish Jacket" }] },
-    { _id: "5", name: "Stylish Jacket", price: 120, images: [{ url: "https://picsum.photos/500/500?random=5", altText: "Stylish Jacket" }] },
-    { _id: "6", name: "Stylish Jacket", price: 120, images: [{ url: "https://picsum.photos/500/500?random=6", altText: "Stylish Jacket" }] },
-    { _id: "7", name: "Stylish Jacket", price: 120, images: [{ url: "https://picsum.photos/500/500?random=7", altText: "Stylish Jacket" }] },
-    { _id: "8", name: "Stylish Jacket", price: 120, images: [{ url: "https://picsum.photos/500/500?random=8", altText: "Stylish Jacket" }] },
-  ];
-  {/** */}
+  const [newArrivals, setNewArrivals] = useState([]);
+
+  useEffect(() => {
+    // Fetch new arrivals from an API or define them here
+    const fetchNewArrivals = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products/new-arrivals`);
+        setNewArrivals(response.data);
+      } catch (error) {
+        console.error("Error fetching new arrivals:", error);
+      }
+    };
+    fetchNewArrivals();
+  }, []);
 
   const handleMouseDown=(e)=>{
       setIsDragging(true);
@@ -65,7 +69,7 @@ const NewArrivals = () => {
       updateScrollButtons();
       return () => container.removeEventListener("scroll", updateScrollButtons);
     }
-  }, []);
+  }, [newArrivals]);
 
   return (
     <section className="py-16 px-4 lg:px-0">
