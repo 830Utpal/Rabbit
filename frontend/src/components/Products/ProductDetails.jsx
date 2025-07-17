@@ -1,62 +1,28 @@
 import {  useEffect, useState } from "react";
 import {toast} from "sonner";
 import ProductGrid from "./ProductGrid";
+import { useDispatch, useSelector } from "react-redux";
 
-const selectedProduct = {
-    name: "Stylish jacket",
-    price: 120,
-    originalPrice: 150,
-    description: "This is a stylish Jacket perfect for any occasion",
-    brand: "FashionBrand",
-    material: "Leather",
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Red", "Black"],
-    images: [
-      {
-        url: "https://picsum.photos/500/500?random=1",
-        altText: "Stylish Jacket",
-      },
-      {
-        url: "https://picsum.photos/500/500?random=2",
-        altText: "Stylish Jacket",
-      },
-    ],
-  };
-
-  const similarProducts=[
-    {
-        _id:1,
-        name:"Product 1",
-        price:100,
-        images:[{url:"https://picsum.photos/500/500?random=3"}]
-    },
-    {
-        _id:2,
-        name:"Product 2",
-        price:100,
-        images:[{url:"https://picsum.photos/500/500?random=4"}]
-    },
-    {
-        _id:3,
-        name:"Product 3",
-        price:100,
-        images:[{url:"https://picsum.photos/500/500?random=5"}]
-    },
-    {
-        _id:4,
-        name:"Product 4",
-        price:100,
-        images:[{url:"https://picsum.photos/500/500?random=6"}]
-    },
-  ]
   
-  const ProductDetails = () => {
+  const ProductDetails = ({productId}) => {
+    const {id}=useParams();
+    const dispatch = useDispatch();
+    const {selectedProduct,loading,error,similarProducts}=useSelector((state)=>state.products);
+    const {user,guestId}=useSelector((state)=>state.auth);
     const[mainImage,setMainImage]=useState("");
     const[selectedSize,setSelectedSize]=useState("");
     const[selectedColor,setSelectedColor]=useState("");
     const [quantity,setQuantity]=useState(1);
     const [isButtonDisabled,setIsButtonDisabled]=useState(false);
 
+    const productFetchId = productId || id;
+
+    useEffect(() => {
+        if (productFetchId) {
+            dispatch(fetchProductDetails(productFetchId));
+            dispatch(fetchSimilarProducts(productFetchId));
+        }
+    }, [dispatch, productFetchId]);
 
     useEffect(()=> {
         if(selectedProduct?.images?.length>0){
@@ -79,13 +45,31 @@ const selectedProduct = {
 
         setIsButtonDisabled(true);
 
-        setTimeout(()=>{
-        toast.success("product added to cart!",{
-          duration:1000,
+        dispatch(addToCart({
+          productId: productFetchId,
+          userId: user?._id,
+          guestId,
+          quantity,
+          size:selectedSize,
+          color:selectedColor
+        }))
+        .then(() => {
+          toast.success("Product added to cart!", {
+            duration: 1000,
+          });
+        })
+        .finally(() => {
+          setIsButtonDisabled(false);
         });
-        setIsButtonDisabled(false);
-        },500);
     };
+
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+
+    if (error) {
+      return <div className="text-red-500 text-center">Error loading product details: {error}</div>;
+    }
 
     return (
       <div className="p-6">
