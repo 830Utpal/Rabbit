@@ -2,6 +2,9 @@ import {  useEffect, useState } from "react";
 import {toast} from "sonner";
 import ProductGrid from "./ProductGrid";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { fetchProductDetails, fetchSimilarProducts } from "../../redux/slices/productsSlice";
+import { addToCart } from "../../redux/slices/cartSlice";
 
   
   const ProductDetails = ({productId}) => {
@@ -20,7 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
     useEffect(() => {
         if (productFetchId) {
             dispatch(fetchProductDetails(productFetchId));
-            dispatch(fetchSimilarProducts(productFetchId));
+            dispatch(fetchSimilarProducts({id: productFetchId}));
         }
     }, [dispatch, productFetchId]);
 
@@ -73,6 +76,7 @@ import { useDispatch, useSelector } from "react-redux";
 
     return (
       <div className="p-6">
+        {selectedProduct && (
         <div className="max-w-6xl mx-auto bg-white p-8 rounded-lg">
           <div className="flex flex-col md:flex-row">
             {/** Left Thumbnails */}
@@ -187,9 +191,10 @@ import { useDispatch, useSelector } from "react-redux";
           </div>
           <div className="mt-20">
             <h2 className="text-2xl text-center font-medium mb-4 pt-20 pb-7">You May Also Like</h2>
-            <ProductGrid products={similarProducts}/>
+            <ProductGrid products={similarProducts} loading={loading} error={error}/>
           </div>
         </div>
+        )}
       </div>
     );
   };
